@@ -81,7 +81,7 @@ web_modules/
 !.env.example
 
 # Credentials and provider identifiers
-**/firebase-adminsdk-*.json
+**/*firebase-adminsdk-*.json
 backup/legacy-20261005/source/modules/stringee/logcall.md
 
 # parcel-bundler cache (https://parceljs.org/)
