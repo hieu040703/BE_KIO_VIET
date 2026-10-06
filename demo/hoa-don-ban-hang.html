@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Đơn Bán Hàng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .company-info {
+            margin-bottom: 10px;
+        }
+
+        .company-info h2 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .company-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .invoice-details .left,
+        .invoice-details .right {
+            width: 48%;
+        }
+
+        .invoice-details h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .invoice-details p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .invoice-details strong {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        table thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .totals {
+            margin-left: auto;
+            width: 350px;
+        }
+
+        .totals table {
+            margin-bottom: 0;
+        }
+
+        .totals td {
+            padding: 6px 8px;
+        }
+
+        .totals .grand-total {
+            /* background-color: #2c3e50; */
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .signature-box {
+            text-align: center;
+            width: 200px;
+        }
+
+        .signature-box .sbname {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .signature-line {
+            border-top: 1px solid #333;
+            padding-top: 5px;
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .notes {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff9e6;
+            border-left: 4px solid #f39c12;
+        }
+
+        .notes h4 {
+            color: #f39c12;
+            margin-bottom: 5px;
+        }
+
+        .notes p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .invoice-container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        .print-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .print-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button class="print-button" onclick="window.print()">🖨️ In Hóa Đơn</button>
+    </div>
+
+    <div class="invoice-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>HÓA ĐƠN BÁN HÀNG</h1>
+            <p style="color: #666; margin-top: 5px;">SALES INVOICE</p>
+        </div>
+
+        <!-- Company Info -->
+        <div class="company-info">
+            <h2>CÔNG TY TNHH ABC</h2>
+            <p><strong>Địa chỉ:</strong> 123 Đường Nguyễn Huệ, Quận 1, TP.HCM</p>
+            <p><strong>Điện thoại:</strong> (028) 1234 5678 | <strong>Email:</strong> info@company.com</p>
+            <p><strong>Mã số thuế:</strong> 0123456789</p>
+        </div>
+
+        <!-- Invoice Details -->
+        <div class="invoice-details">
+            <div class="left">
+                <h3>Thông Tin Hóa Đơn</h3>
+                <p><strong>Số hóa đơn:</strong> HD-2026-001</p>
+                <p><strong>Ngày lập:</strong> 06/02/2026</p>
+                <p><strong>Hình thức thanh toán:</strong> Tiền mặt</p>
+            </div>
+            <div class="right">
+                <h3>Thông Tin Khách Hàng</h3>
+                <p><strong>Tên khách hàng:</strong> Nguyễn Văn A</p>
+                <p><strong>Địa chỉ:</strong> 456 Đường Lê Lợi, Quận 3, TP.HCM</p>
+                <p><strong>Số điện thoại:</strong> 0912 345 678</p>
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-center">STT</th>
+                    <th>Tên Hàng Hóa / Dịch Vụ</th>
+                    <th class="text-center">ĐVT</th>
+                    <th class="text-right">Số Lượng</th>
+                    <th class="text-right">Đơn Giá</th>
+                    <th class="text-right">Thành Tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>Sản phẩm A</td>
+                    <td class="text-center">Cái</td>
+                    <td class="text-right">2</td>
+                    <td class="text-right">500,000</td>
+                    <td class="text-right">1,000,000</td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td>Sản phẩm B</td>
+                    <td class="text-center">Hộp</td>
+                    <td class="text-right">3</td>
+                    <td class="text-right">300,000</td>
+                    <td class="text-right">900,000</td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td>Dịch vụ C</td>
+                    <td class="text-center">Lần</td>
+                    <td class="text-right">1</td>
+                    <td class="text-right">750,000</td>
+                    <td class="text-right">750,000</td>
+                </tr>
+                <tr>
+                    <td class="text-center">4</td>
+                    <td>Sản phẩm D</td>
+                    <td class="text-center">Cái</td>
+                    <td class="text-right">5</td>
+                    <td class="text-right">150,000</td>
+                    <td class="text-right">750,000</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div class="totals">
+            <table>
+                <tr>
+                    <td>Tạm tính:</td>
+                    <td class="text-right">3,400,000 đ</td>
+                </tr>
+                <tr>
+                    <td>Giảm giá:</td>
+                    <td class="text-right">- 0 đ</td>
+                </tr>
+                <tr>
+                    <td>Thuế VAT (10%)</td>
+                    <td class="text-right">340,000 đ</td>
+                </tr>
+                <tr class="grand-total">
+                    <td><strong>TỔNG CỘNG:</strong></td>
+                    <td class="text-right"><strong>3,740,000 đ</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Notes -->
+        <div class="notes">
+            <h4>Ghi Chú:</h4>
+            <p>- Vui lòng kiểm tra hàng hóa trước khi nhận.</p>
+            <p>- Hóa đơn này là bằng chứng để khách hàng đổi trả hàng trong vòng 7 ngày.</p>
+            <p>- Cảm ơn quý khách đã sử dụng sản phẩm/dịch vụ của chúng tôi!</p>
+        </div>
+
+        <!-- Signatures -->
+        <div class="signatures">
+            <div class="signature-box">
+                <p class="sbname">Người Mua Hàng</p>
+                <p>(Ký và ghi rõ họ tên)</p>
+            </div>
+            <div class="signature-box">
+                <p class="sbname">Người Bán Hàng</p>
+                <p>(Ký và ghi rõ họ tên)</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p style="text-align: center; color: #999; font-size: 12px;">
+                Đây là hóa đơn được tạo tự động từ hệ thống
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Hàm format số tiền
+        function formatCurrency(number) {
+            return new Intl.NumberFormat('vi-VN').format(number);
+        }
+
+        // Hàm tính tổng tiền
+        function calculateTotal() {
+            const rows = document.querySelectorAll('tbody tr');
+            let subtotal = 0;
+
+            rows.forEach(row => {
+                const quantityCell = row.cells[3].textContent.trim();
+                const priceCell = row.cells[4].textContent.replace(/,/g, '');
+                const quantity = parseFloat(quantityCell);
+                const price = parseFloat(priceCell);
+                const total = quantity * price;
+                
+                row.cells[5].textContent = formatCurrency(total);
+                subtotal += total;
+            });
+
+            // Cập nhật các giá trị tổng
+            const discount = 0;
+            const taxRate = 0.1;
+            const tax = subtotal * taxRate;
+            const grandTotal = subtotal - discount + tax;
+
+            document.querySelector('.totals table tr:nth-child(1) td:last-child').textContent = formatCurrency(subtotal) + ' đ';
+            document.querySelector('.totals table tr:nth-child(2) td:last-child').textContent = '- ' + formatCurrency(discount) + ' đ';
+            document.querySelector('.totals table tr:nth-child(3) td:last-child').textContent = formatCurrency(tax) + ' đ';
+            document.querySelector('.totals table tr:nth-child(4) td:last-child strong').textContent = formatCurrency(grandTotal) + ' đ';
+        }
+
+        // Gọi hàm khi trang load
+        document.addEventListener('DOMContentLoaded', calculateTotal);
+    </script>
+</body>
+</html>

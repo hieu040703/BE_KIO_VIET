@@ -1,0 +1,15 @@
+DB_PASSWORD="iTomo1102"
+CURRENT_DATE=$(date +%Y%m%d_%H%M%S)
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/indd_${CURRENT_DATE}.backup indd
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/bansi_${CURRENT_DATE}.backup bansi
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/baophong_${CURRENT_DATE}.backup baophong
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/duclamwood_${CURRENT_DATE}.backup duclamwood
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/hair_${CURRENT_DATE}.backup hair
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/lotusoceanjp_${CURRENT_DATE}.backup lotusoceanjp
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/pmi_${CURRENT_DATE}.backup pmi
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/quanlykho_${CURRENT_DATE}.backup quanlykho
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/takagi_${CURRENT_DATE}.backup takagi
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/thepdonganh_${CURRENT_DATE}.backup thepdonganh
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/vtam_${CURRENT_DATE}.backup vtam
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/xl_${CURRENT_DATE}.backup xl
+PGPASSWORD=$DB_PASSWORD pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f /root/backup/apotect_${CURRENT_DATE}.backup apotech

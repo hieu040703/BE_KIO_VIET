@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Test Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .connected { background-color: #d4edda; color: #155724; }
+        .disconnected { background-color: #f8d7da; color: #721c24; }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .event {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-left: 3px solid #007bff;
+            background: white;
+        }
+        .timestamp {
+            color: #6c757d;
+            font-size: 10px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 SSE Test Client</h1>
+        
+        <div id="status" class="status disconnected">
+            ❌ Disconnected
+        </div>
+        
+        <div>
+            <button id="connectBtn" onclick="connect()">Connect</button>
+            <button id="disconnectBtn" onclick="disconnect()" disabled>Disconnect</button>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+        
+        <h3>📡 Event Stream Log:</h3>
+        <div id="log" class="log"></div>
+        
+        <h3>📊 Connection Stats:</h3>
+        <div id="stats">
+            <p>Client ID: <span id="clientId">-</span></p>
+            <p>Events Received: <span id="eventCount">0</span></p>
+            <p>Last Event: <span id="lastEvent">-</span></p>
+            <p>Connection Time: <span id="connectionTime">-</span></p>
+        </div>
+    </div>
+
+    <script>
+        let eventSource = null;
+        let eventCount = 0;
+        let connectionStartTime = null;
+        
+        const SSE_ENDPOINT = 'http://localhost:4000/v1/client/sse/price-stream';
+        
+        function connect() {
+            if (eventSource) {
+                disconnect();
+            }
+            
+            log('🔄 Connecting to SSE endpoint...');
+            connectionStartTime = Date.now();
+            
+            eventSource = new EventSource(SSE_ENDPOINT);
+            
+            // Connection opened
+            eventSource.onopen = function(event) {
+                updateStatus(true, 'Connected to SSE stream');
+                log('✅ Connection opened');
+                updateButtons(true);
+            };
+            
+            // Generic message handler
+            eventSource.onmessage = function(event) {
+                eventCount++;
+                log(`📨 Message: ${event.data}`, 'message');
+                updateStats();
+            };
+            
+            // Specific event handlers
+            eventSource.addEventListener('connected', function(event) {
+                const data = JSON.parse(event.data);
+                document.getElementById('clientId').textContent = data.clientId;
+                log(`🔗 Connected event: ${event.data}`, 'connected');
+                eventCount++;
+                updateStats();
+            });
+            
+            eventSource.addEventListener('initial-prices', function(event) {
+                const prices = JSON.parse(event.data);
+                log(`💰 Initial prices (${prices.length} items): ${event.data}`, 'initial-prices');
+                eventCount++;
+                updateStats();
+            });
+            
+            eventSource.addEventListener('price-update', function(event) {
+                const price = JSON.parse(event.data);
+                log(`📈 Price update - ${price.product}: $${price.price}`, 'price-update');
+                console.log(`📈 Price update - ${price.product}: $${price.price}`);
+                eventCount++;
+                updateStats();
+            });
+            
+            eventSource.addEventListener('heartbeat', function(event) {
+                log(`💓 Heartbeat: ${event.data}`, 'heartbeat');
+                eventCount++;
+                updateStats();
+            });
+            
+            // Error handler
+            eventSource.onerror = function(event) {
+                console.error('SSE Error:', event);
+                updateStatus(false, 'Connection error');
+                log('❌ Connection error occurred', 'error');
+                
+                // Auto-reconnect after 3 seconds
+                setTimeout(() => {
+                    if (!eventSource || eventSource.readyState === EventSource.CLOSED) {
+                        log('🔄 Attempting to reconnect...');
+                        connect();
+                    }
+                }, 3000);
+            };
+        }
+        
+        function disconnect() {
+            if (eventSource) {
+                eventSource.close();
+                eventSource = null;
+                updateStatus(false, 'Disconnected');
+                log('🔴 Disconnected from SSE stream');
+                updateButtons(false);
+                document.getElementById('clientId').textContent = '-';
+            }
+        }
+        
+        function updateStatus(connected, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${connected ? 'connected' : 'disconnected'}`;
+            statusEl.textContent = `${connected ? '✅' : '❌'} ${message}`;
+        }
+        
+        function updateButtons(connected) {
+            document.getElementById('connectBtn').disabled = connected;
+            document.getElementById('disconnectBtn').disabled = !connected;
+        }
+        
+        function updateStats() {
+            document.getElementById('eventCount').textContent = eventCount;
+            document.getElementById('lastEvent').textContent = new Date().toLocaleTimeString();
+            
+            if (connectionStartTime) {
+                const duration = Math.floor((Date.now() - connectionStartTime) / 1000);
+                document.getElementById('connectionTime').textContent = `${duration}s`;
+            }
+        }
+        
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            const eventEl = document.createElement('div');
+            eventEl.className = 'event';
+            eventEl.innerHTML = `
+                <div>${message}</div>
+                <div class="timestamp">${timestamp} - ${type}</div>
+            `;
+            
+            logEl.appendChild(eventEl);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            eventCount = 0;
+            updateStats();
+        }
+        
+        // Auto-connect on page load
+        window.addEventListener('load', () => {
+            log('🚀 SSE Test Client loaded');
+            log('Click Connect to start SSE stream');
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (eventSource) {
+                eventSource.close();
+            }
+        });
+    </script>
+</body>
+</html>

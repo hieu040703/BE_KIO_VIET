@@ -1,0 +1,15 @@
+export const COMMON_TYPES = {
+  FirebaseUtils: Symbol.for("FirebaseUtils"),
+  FirebaseRouter: Symbol.for("FirebaseRouter"),
+  TransactionManager: Symbol.for("TransactionManager"),
+  TokenRepository: Symbol.for("TokenRepository"),
+  TokenController: Symbol.for("TokenController"),
+  CommonController: Symbol.for("CommonController"),
+  CommonService: Symbol.for("CommonService"),
+  CommonRouter: Symbol.for("CommonRouter"),
+  CommonRepository: Symbol.for("CommonRepository"),
+  CodeService: Symbol.for("CodeService"),
+  FileUploadRepository: Symbol.for("FileUploadRepository"),
+  FileUploadService: Symbol.for("FileUploadService"),
+  FileUploadController: Symbol.for("FileUploadController"),
+};

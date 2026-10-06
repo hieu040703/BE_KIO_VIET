@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cập nhật giá sản phẩm với SSE</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      #price {
+        font-size: 24px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Giá sản phẩm theo thời gian thực</h1>
+    <div id="price">Đang kết nối...</div>
+
+    <script>
+      const source = new EventSource("http://localhost:8080/price-updates");
+
+      source.onopen = (event) => {
+        console.log("Kết nối SSE đã mở", event);
+        document.getElementById("price").innerText = "Đang chờ dữ liệu...";
+      };
+
+      source.onmessage = (event) => {
+        console.log("Nhận được dữ liệu:", event.data);
+        const data = JSON.parse(event.data);
+        document.getElementById("price").innerText = `Giá sản phẩm: ${data.price} VND`;
+      };
+
+      source.onerror = (error) => {
+        console.error("Lỗi SSE:", error);
+        console.log("ReadyState:", source.readyState);
+        
+        if (source.readyState === EventSource.CLOSED) {
+          document.getElementById("price").innerText = "Kết nối bị đóng";
+        } else {
+          document.getElementById("price").innerText = "Mất kết nối, đang thử kết nối lại...";
+        }
+      };
+
+      // Thêm event listener để kiểm tra trạng thái connection
+      source.addEventListener('error', function(e) {
+        console.log('Connection failed, retrying...', e);
+      });
+    </script>
+  </body>
+</html>

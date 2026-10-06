@@ -1,0 +1,1868 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-1234-1234-123456789012",
+    "name": "Apotech",
+    "note": "API documentation for Apotech",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Contract",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/contracts?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["contracts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/contracts/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["contracts", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"customerId\": \"value\",     \"contractNumber\": \"value\",     \"type\": \"value\",     \"expiresAt\": \"value\",     \"product\": \"value\",     \"address\": \"value\",     \"amount\": \"value\",     \"paymentAmount\": \"value\",     \"paidAt\": \"value\",     \"files\": \"value\",     \"signedAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/contracts",
+              "host": ["{{baseApotech}}"],
+              "path": ["contracts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"customerId\": \"value\",     \"contractNumber\": \"value\",     \"type\": \"value\",     \"expiresAt\": \"value\",     \"product\": \"value\",     \"address\": \"value\",     \"amount\": \"value\",     \"paymentAmount\": \"value\",     \"paidAt\": \"value\",     \"files\": \"value\",     \"signedAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/contracts/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["contracts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/contracts/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["contracts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Customer",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/customers?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["customers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/customers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["customers", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"email\": \"value\",     \"phone\": \"value\",     \"gender\": \"value\",     \"dob\": \"value\",     \"avatar\": \"value\",     \"citizenIdentification\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/customers",
+              "host": ["{{baseApotech}}"],
+              "path": ["customers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"email\": \"value\",     \"phone\": \"value\",     \"gender\": \"value\",     \"dob\": \"value\",     \"avatar\": \"value\",     \"citizenIdentification\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/customers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["customers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/customers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["customers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "FinanceTransaction",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/finance-transactions?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["finance-transactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/finance-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["finance-transactions", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"amount\": \"value\",     \"type\": \"value\",     \"userId\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/finance-transactions",
+              "host": ["{{baseApotech}}"],
+              "path": ["finance-transactions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"amount\": \"value\",     \"type\": \"value\",     \"userId\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/finance-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["finance-transactions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/finance-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["finance-transactions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "InvestmentTransaction",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/investment-transactions?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["investment-transactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/investment-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investment-transactions", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"investorId\": \"value\",     \"amount\": \"value\",     \"type\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investment-transactions",
+              "host": ["{{baseApotech}}"],
+              "path": ["investment-transactions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"investorId\": \"value\",     \"amount\": \"value\",     \"type\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investment-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investment-transactions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investment-transactions/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investment-transactions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Investor",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/investors?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["investors"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/investors/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investors", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"email\": \"value\",     \"phone\": \"value\",     \"gender\": \"value\",     \"dob\": \"value\",     \"avatar\": \"value\",     \"citizenIdentification\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investors",
+              "host": ["{{baseApotech}}"],
+              "path": ["investors"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"email\": \"value\",     \"phone\": \"value\",     \"gender\": \"value\",     \"dob\": \"value\",     \"avatar\": \"value\",     \"citizenIdentification\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investors/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investors", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/investors/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["investors", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Notification",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/notifications?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["notifications"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/notifications/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["notifications", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"title\": \"value\",     \"content\": \"value\",     \"type\": \"value\",     \"isRead\": \"value\",     \"metadata\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/notifications",
+              "host": ["{{baseApotech}}"],
+              "path": ["notifications"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"title\": \"value\",     \"content\": \"value\",     \"type\": \"value\",     \"isRead\": \"value\",     \"metadata\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/notifications/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["notifications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/notifications/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["notifications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "PermissionGroup",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/permission-groups?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["permission-groups"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/permission-groups/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["permission-groups", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"permissions\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/permission-groups",
+              "host": ["{{baseApotech}}"],
+              "path": ["permission-groups"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"permissions\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/permission-groups/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["permission-groups", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/permission-groups/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["permission-groups", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ProjectDisbursement",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-disbursements?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-disbursements"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-disbursements/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-disbursements", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"contractId\": \"value\",     \"investorId\": \"value\",     \"amount\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-disbursements",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-disbursements"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"contractId\": \"value\",     \"investorId\": \"value\",     \"amount\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-disbursements/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-disbursements", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-disbursements/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-disbursements", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ProjectRevenue",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-revenues?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenues"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-revenues/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenues", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"contractId\": \"value\",     \"amount\": \"value\",     \"paymentDate\": \"value\",     \"status\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenues",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenues"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"contractId\": \"value\",     \"amount\": \"value\",     \"paymentDate\": \"value\",     \"status\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenues/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenues", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenues/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenues", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ProjectRevenueDetail",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-revenue_details?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenue_details"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/project-revenue_details/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenue_details", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"projectRevenueId\": \"value\",     \"partnerId\": \"value\",     \"amount\": \"value\",     \"status\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenue_details",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenue_details"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"projectRevenueId\": \"value\",     \"partnerId\": \"value\",     \"amount\": \"value\",     \"status\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenue_details/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenue_details", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/project-revenue_details/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["project-revenue_details", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Token",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/tokens?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["tokens"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/tokens/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["tokens", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"refreshToken\": \"value\",     \"firebaseToken\": \"value\",     \"expiresAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/tokens",
+              "host": ["{{baseApotech}}"],
+              "path": ["tokens"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"refreshToken\": \"value\",     \"firebaseToken\": \"value\",     \"expiresAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/tokens/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["tokens", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/tokens/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["tokens", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/users?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/users/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["users", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"email\": \"value\",     \"role\": \"value\",     \"permissionGroupId\": \"value\",     \"username\": \"value\",     \"phone\": \"value\",     \"password\": \"value\",     \"avatar\": \"value\",     \"address\": \"value\",     \"background\": \"value\",     \"isActive\": \"value\",     \"verifyKey\": \"value\",     \"verifyCode\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/users",
+              "host": ["{{baseApotech}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"email\": \"value\",     \"role\": \"value\",     \"permissionGroupId\": \"value\",     \"username\": \"value\",     \"phone\": \"value\",     \"password\": \"value\",     \"avatar\": \"value\",     \"address\": \"value\",     \"background\": \"value\",     \"isActive\": \"value\",     \"verifyKey\": \"value\",     \"verifyCode\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/users/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/users/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ColumnNumericTransformer",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/columnnumerictransformers?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseApotech}}"],
+              "path": ["columnnumerictransformers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseApotech}}/columnnumerictransformers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["columnnumerictransformers", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/columnnumerictransformers",
+              "host": ["{{baseApotech}}"],
+              "path": ["columnnumerictransformers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/columnnumerictransformers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["columnnumerictransformers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseApotech}}/columnnumerictransformers/:id",
+              "host": ["{{baseApotech}}"],
+              "path": ["columnnumerictransformers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

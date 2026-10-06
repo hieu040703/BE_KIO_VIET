@@ -1,0 +1,1785 @@
+{
+  "info": {
+    "_postman_id": "1ecb4e1b-2a7f-4d5f-9e15-000000000001",
+    "name": "Thien Bao - CTXD API",
+    "description": "Postman collection generated from the current BE_BOC_XEP_HANG_HOA routes. Run Auth > Login admin first. Create requests capture returned IDs into collection variables.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4004"
+    },
+    {
+      "key": "id",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "userId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "branchId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "customerId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "employeeId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "contractId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "orderId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "serviceId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "invoiceId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "fundId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "financeId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "debtId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "advanceSalaryId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "advanceEmployeeId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "marginId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "expenseApprovalId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "key": "timeKeepingId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "item": [
+    {
+      "name": "00 - Health",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 - Auth",
+      "item": [
+        {
+          "name": "Login admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Postman tự lưu accessToken và refreshToken vào cookie khi cookie jar được bật."
+          }
+        },
+        {
+          "name": "Current user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/auth/me"
+          }
+        },
+        {
+          "name": "Refresh token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/auth/refresh-token"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Users",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/users?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/users",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"postman-{{$timestamp}}\",\n  \"password\": \"123456\",\n  \"role\": \"USER\",\n  \"name\": \"Postman User\",\n  \"email\": \"postman@example.com\",\n  \"phone\": \"0900000001\",\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"userId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/users/{{userId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/users/{{userId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman User Updated\",\n  \"phone\": \"0900000099\",\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/users/{{userId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Branches",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/branches?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/branches",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Chi nhanh Postman\",\n  \"code\": \"CN-POSTMAN-{{$timestamp}}\",\n  \"address\": {\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Cau Giay\",\n    \"detail\": \"So 1 Nguyen Trai\"\n  },\n  \"hotline\": \"0900000001\",\n  \"isDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"branchId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/branches/{{branchId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/branches/{{branchId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Chi nhanh Postman Updated\",\n  \"hotline\": \"0900000011\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/branches/{{branchId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Customers",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/customers?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/customers",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Khach hang Postman\",\n  \"phone\": \"0900000002\",\n  \"email\": \"customer@example.com\",\n  \"address\": {\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Cau Giay\",\n    \"detail\": \"So 1 Nguyen Trai\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"customerId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/customers/{{customerId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/customers/{{customerId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Khach hang Postman Updated\",\n  \"phone\": \"0900000022\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/customers/{{customerId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Employees",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/employees?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/employees",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchId\": \"{{branchId}}\",\n  \"code\": \"NV-POSTMAN-{{$timestamp}}\",\n  \"name\": \"Nhan vien Postman\",\n  \"dob\": \"1995-05-15\",\n  \"gender\": \"MALE\",\n  \"email\": \"nhanvien.postman@example.com\",\n  \"phone\": \"0900000011\",\n  \"zaloName\": \"Nhan vien Postman\",\n  \"address\": {\n    \"country\": \"Viet Nam\",\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Cau Giay\",\n    \"detail\": \"So 1 Nguyen Trai\",\n    \"zip\": \"100000\"\n  },\n  \"identityNumber\": \"001095000011\",\n  \"status\": \"active\",\n  \"isOfficial\": true,\n  \"isDefault\": false,\n  \"position\": \"Nhan vien kinh doanh\",\n  \"department\": \"Kinh doanh\",\n  \"startDate\": \"2026-09-21\",\n  \"endDate\": null,\n  \"note\": \"Nhan vien tao tu Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"employeeId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/employees/{{employeeId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/employees/{{employeeId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchId\": \"{{branchId}}\",\n  \"code\": \"NV-POSTMAN-UPDATED-{{$timestamp}}\",\n  \"name\": \"Nhan vien Postman Updated\",\n  \"dob\": \"1995-05-16\",\n  \"gender\": \"MALE\",\n  \"email\": \"nhanvien.postman.updated@example.com\",\n  \"phone\": \"0900000022\",\n  \"zaloName\": \"Nhan vien Postman Updated\",\n  \"address\": {\n    \"country\": \"Viet Nam\",\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Ba Dinh\",\n    \"detail\": \"So 2 Nguyen Trai\",\n    \"zip\": \"100000\"\n  },\n  \"identityNumber\": \"001095000022\",\n  \"status\": \"active\",\n  \"isOfficial\": true,\n  \"isDefault\": false,\n  \"position\": \"Quan ly\",\n  \"department\": \"Van hanh\",\n  \"startDate\": \"2026-09-21\",\n  \"endDate\": null,\n  \"note\": \"Nhan vien da cap nhat tu Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/employees/{{employeeId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Contracts",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/contracts?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/contracts",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchId\": \"{{branchId}}\",\n  \"code\": \"HD-POSTMAN-{{$timestamp}}\",\n  \"customerId\": \"{{customerId}}\",\n  \"employeeId\": \"{{employeeId}}\",\n  \"signDate\": \"2026-09-21\",\n  \"isActive\": true,\n  \"amount\": 1000000,\n  \"content\": \"Hop dong mau Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"contractId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/contracts/{{contractId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/contracts/{{contractId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Hop dong Postman da cap nhat\",\n  \"amount\": 1200000,\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/contracts/{{contractId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Orders",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branchId\": \"{{branchId}}\",\n  \"name\": \"Don hang Postman\",\n  \"code\": \"DH-POSTMAN-{{$timestamp}}\",\n  \"customerId\": \"{{customerId}}\",\n  \"employeeId\": \"{{employeeId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"address\": {\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Cau Giay\",\n    \"detail\": \"So 1 Nguyen Trai\"\n  },\n  \"deliveryAddress\": {\n    \"state\": \"Ha Noi\",\n    \"ward\": \"Cau Giay\",\n    \"detail\": \"So 1 Nguyen Trai\"\n  },\n  \"employeeCount\": 1,\n  \"amount\": 1000000,\n  \"status\": \"PENDING\",\n  \"description\": \"Don hang test Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"orderId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Don hang Postman Updated\",\n  \"status\": \"PROCESSING\",\n  \"amount\": 1200000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}"
+          }
+        },
+        {
+          "name": "Revenue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/revenue?startAt=2026-09-01&endAt=2026-09-30"
+          }
+        },
+        {
+          "name": "Unpaid orders by customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/customer/{{customerId}}/unpaid?page=1&size=20"
+          }
+        },
+        {
+          "name": "Start order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/start"
+          }
+        },
+        {
+          "name": "Complete order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/complete"
+          }
+        },
+        {
+          "name": "Cancel order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/cancel"
+          }
+        },
+        {
+          "name": "Confirm payment all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/confirm-payment-all"
+          }
+        },
+        {
+          "name": "QR code bank transfer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/qrcode-bank-transfer"
+          }
+        },
+        {
+          "name": "Unread comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/unread-comments"
+          }
+        },
+        {
+          "name": "Export bill",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/orders/{{orderId}}/export-bill"
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 - Services",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/services?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/services",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dich vu Postman\",\n  \"code\": \"DV-POSTMAN-{{$timestamp}}\",\n  \"price\": \"1000000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"serviceId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/services/{{serviceId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/services/{{serviceId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dich vu Postman Updated\",\n  \"price\": \"1200000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/services/{{serviceId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 - Invoices",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/invoices?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/invoices",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"customerId\": \"{{customerId}}\",\n  \"branchId\": \"{{branchId}}\",\n  \"employeeId\": \"{{employeeId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"code\": \"HD-POSTMAN-{{$timestamp}}\",\n  \"type\": \"SALES\",\n  \"description\": \"Hoa don test Postman\",\n  \"totalBeforeTax\": 1000000,\n  \"taxPercent\": 10,\n  \"taxAmount\": 100000,\n  \"totalAfterTax\": 1100000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"invoiceId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/invoices/{{invoiceId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/invoices/{{invoiceId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Hoa don Postman Updated\",\n  \"totalAfterTax\": 1200000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/invoices/{{invoiceId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 - Funds",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/funds?page=1&size=20"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/funds",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Quy Postman\",\n  \"bankName\": \"MBank\",\n  \"bin\": \"970422\",\n  \"accountNumber\": \"0888382699\",\n  \"accountHolder\": \"POSTMAN TEST\",\n  \"isDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"fundId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/funds/{{fundId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/funds/{{fundId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Quy Postman Updated\",\n  \"isDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/funds/{{fundId}}"
+          }
+        },
+        {
+          "name": "Sepay webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/funds/sepay-webhook",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"postman-test\",\n  \"transferType\": \"in\",\n  \"transferAmount\": 100000,\n  \"content\": \"POSTMAN TEST\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 - Accountant",
+      "item": [
+        {
+          "name": "Finances",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/finances?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/finances",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branchId\": \"{{branchId}}\",\n  \"type\": \"INCOME\",\n  \"category\": \"Thu test Postman\",\n  \"amount\": 1000000,\n  \"customerId\": \"{{customerId}}\",\n  \"orderId\": \"{{orderId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"isDeposit\": false,\n  \"isDebtRelated\": false,\n  \"note\": \"Giao dich test Postman\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"financeId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/finances/{{financeId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/finances/{{financeId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"category\": \"Thu test Postman Updated\",\n  \"amount\": 1100000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/finances/{{financeId}}"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Debts",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/debts?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/debts",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"RECEIVABLE\",\n  \"amount\": 1000000,\n  \"customerId\": \"{{customerId}}\",\n  \"orderId\": \"{{orderId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"note\": \"Cong no test Postman\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"debtId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/debts/{{debtId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/debts/{{debtId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1100000,\n  \"note\": \"Cong no updated\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/debts/{{debtId}}"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Debt current",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/accountants/debts/{{debtId}}/current?at=2026-09-21T09:00:00.000Z"
+          }
+        },
+        {
+          "name": "Advance salary",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-salary?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/advance-salary",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"ADVANCE_SALARY\",\n  \"amount\": 500000,\n  \"employeeId\": \"{{employeeId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"category\": \"Tam ung luong\",\n  \"status\": \"PENDING\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"advanceSalaryId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-salary/{{advanceSalaryId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/advance-salary/{{advanceSalaryId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 600000,\n  \"note\": \"Tam ung luong updated\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-salary/{{advanceSalaryId}}"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Advance employee",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-employee?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/advance-employee",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"ADVANCE_EMPLOYEE\",\n  \"amount\": 500000,\n  \"employeeId\": \"{{employeeId}}\",\n  \"customerId\": \"{{customerId}}\",\n  \"orderId\": \"{{orderId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"category\": \"Tam ung nhan vien\",\n  \"status\": \"PENDING\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"advanceEmployeeId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-employee/{{advanceEmployeeId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/advance-employee/{{advanceEmployeeId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 600000,\n  \"note\": \"Tam ung nhan vien updated\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/advance-employee/{{advanceEmployeeId}}"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Advance employee summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/accountants/advance-employee/summary?page=1&size=20"
+          }
+        },
+        {
+          "name": "Margins",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/margins?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/margins",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"{{employeeId}}\",\n  \"branchId\": \"{{branchId}}\",\n  \"type\": \"MARGIN\",\n  \"amount\": 500000,\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"isAutomatic\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"marginId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/margins/{{marginId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/margins/{{marginId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 600000,\n  \"note\": \"Ky quy updated\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/margins/{{marginId}}"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refund margin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/v1/accountants/margins/{{marginId}}/refund"
+          }
+        },
+        {
+          "name": "Expense approvals",
+          "item": [
+            {
+              "name": "Get all",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/expense-approvals?page=1&size=20"
+              }
+            },
+            {
+              "name": "Create / confirm",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/expense-approvals",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expenseIds\": [],\n  \"advanceEmployeeIds\": [],\n  \"advanceSalaryIds\": [],\n  \"marginIds\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                      "  const response = pm.response.json();",
+                      "  const id = response?.data?.id || response?.id;",
+                      "  if (id) pm.collectionVariables.set(\"expenseApprovalId\", id);",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Get by id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/expense-approvals/{{expenseApprovalId}}"
+              }
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{baseUrl}}/v1/accountants/expense-approvals/{{expenseApprovalId}}",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isConfirm\": true,\n  \"note\": \"Duyet chi test Postman\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete item",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/v1/accountants/expense-approvals/{{expenseApprovalId}}/finance"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "12 - Time keepings",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings?page=1&size=20"
+          }
+        },
+        {
+          "name": "Get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings/{{timeKeepingId}}"
+          }
+        },
+        {
+          "name": "Create with order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/time-keepings",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeIds\": [\n    \"{{employeeId}}\"\n  ],\n  \"details\": [\n    {\n      \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n      \"startTime\": \"08:00\",\n      \"endTime\": \"17:00\",\n      \"totalHours\": 8,\n      \"isOvertime\": false,\n      \"isPaid\": false,\n      \"isCollected\": false,\n      \"note\": \"Cham cong theo don test Postman\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"timeKeepingId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/time-keepings/{{timeKeepingId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"startTime\": \"08:00\",\n  \"endTime\": \"17:30\",\n  \"totalHours\": 8.5,\n  \"note\": \"Cap nhat cham cong\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings/{{timeKeepingId}}"
+          }
+        },
+        {
+          "name": "Create other",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/time-keepings/other",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeId\": \"{{employeeId}}\",\n  \"timeAt\": \"2026-09-21T09:00:00.000Z\",\n  \"startTime\": \"08:00\",\n  \"endTime\": \"17:00\",\n  \"totalHours\": 8,\n  \"isOvertime\": false,\n  \"isPaid\": false,\n  \"isCollected\": false,\n  \"note\": \"Cham cong test Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code >= 200 && pm.response.code < 300) {",
+                  "  const response = pm.response.json();",
+                  "  const id = response?.data?.id || response?.id;",
+                  "  if (id) pm.collectionVariables.set(\"timeKeepingId\", id);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update other",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/time-keepings/other/{{timeKeepingId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startTime\": \"08:30\",\n  \"endTime\": \"17:30\",\n  \"totalHours\": 8,\n  \"note\": \"Cap nhat cham cong khac\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete other",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings/other/{{timeKeepingId}}"
+          }
+        },
+        {
+          "name": "All summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings/all-summary?startAt=2026-09-01&endAt=2026-09-30"
+          }
+        },
+        {
+          "name": "Confirm time keeping",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/v1/time-keepings/confirm",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeId\": \"{{employeeId}}\",\n  \"startAt\": \"2026-09-01T00:00:00.000Z\",\n  \"endAt\": \"2026-09-30T23:59:59.000Z\",\n  \"dataTimeKeeping\": {},\n  \"timeKeepingIds\": [],\n  \"totalDayWorked\": 1,\n  \"totalHours\": 8,\n  \"totalSalary\": 100000,\n  \"totalRealSalary\": 100000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Time keeping histories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/v1/time-keepings/histories?page=1&size=20"
+          }
+        }
+      ]
+    }
+  ]
+}

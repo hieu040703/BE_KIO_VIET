@@ -1,0 +1,96 @@
+import { IHeader, ListStyle } from "@/shared/config/excels";
+import { Column, DataValidation } from "exceljs";
+
+export const header: IHeader[] = [
+  {
+    header: "Mã vận đơn",
+    key: "code",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Tên người gửi",
+    key: "shopName",
+    width: 25,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "SĐT người gửi",
+    key: "phone",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Thời gian gửi",
+    key: "timeAt",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Số tiền COD",
+    key: "cod",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "COD gốc",
+    key: "originalCod",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Trọng lượng tính phí nội bộ",
+    key: "weight",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "TC sau CK sau VAT",
+    key: "shippingFee",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Tiền hàng",
+    key: "itemPrice",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Nội dung hàng hóa",
+    key: "description",
+    width: 35,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Nhân viên nhận hàng",
+    key: "receiverName",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Tên KH",
+    key: "customerName",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+  {
+    header: "Bưu cục gửi",
+    key: "shippingPostOffice",
+    width: 15,
+    style: ListStyle.YELLOW as Partial<Column>,
+    children: [],
+  },
+];

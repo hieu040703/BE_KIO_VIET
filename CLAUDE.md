@@ -1,0 +1,3 @@
+# BE/CLAUDE.md
+
+@AGENTS.md

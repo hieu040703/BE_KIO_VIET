@@ -1,0 +1,24 @@
+# Service Order Module Notes
+
+- `ClientServiceOrderService.validateBeforeCreate` owns customer-created service order defaults and validation, including assigning `customerId` from `req.user.customerId`, quote-derived pricing/status, VAT, and nearest branch/employee resolution.
+- Customer-created service orders auto-fill `code` via `CodeService.getCode("ServiceOrder", manager)` when `data.code` is empty. The direct service order code uses prefix `DV` and is separate from the final `Order.code`.
+- `AdminServiceOrderService.confirm` turns a confirmed service order into an `Order`, using `CodeService.getCode("Order", manager)` for the final contract code.
+- `ServiceOrderSelectBasic` controls fields returned by service order APIs; add new entity fields there when API responses should include them.
+- `ServiceOrder.vouchersId` links a customer-owned voucher used on the order. Client create/update validates ownership, unused state, and expiry, emits a `VOUCHER_DISCOUNT` quote row, and marks the voucher used.
+- When validating a voucher inside a transaction, lock the `Vouchers` row without joining `vouchersTemplate`; load `VouchersTemplate` in a separate query to avoid PostgreSQL `FOR UPDATE` errors on `LEFT JOIN`.
+- When a voucher is released because the order is canceled, also persist `service_orders.vouchersId = null`; releasing only `vouchers.isUsed` is not enough because drifted databases may still have the legacy unique constraint on `service_orders.vouchersId`.
+- `ServiceOrder.quote` is the canonical non-VAT pricing ledger. Backend-managed rows use `URGENT`, `FRAGILE_ITEM`, and `VOUCHER_DISCOUNT`; VAT remains in dedicated entity fields.
+- `isUrgent` is backend-derived from `AppSetting.order.urgentOrderEnabled`, `urgentOrderHours`, and `ServiceOrder.timeAt`.
+- Cancel flows must release `vouchersId` by setting the voucher back to unused; this is handled in client cancel and admin status/cancel paths.
+- Admin hard-delete of a service order must clear nullable `tickets.serviceOrderId` references inside the same transaction before deleting the `service_orders` row; otherwise PostgreSQL raises `23503` on table `tickets`.
+- Customer estimate and create resolve `ServicePrice` values from the database and share the same pricing engine. Manual services use `servicePrices: null | []` and begin with `needsQuote = true`.
+- Updating time, fragile selection, voucher, VAT, or quote regenerates backend-managed quote rows.
+- When confirming a service order into an `Order`, map `dec` quote rows to `discountAmount` and only `inc` rows to order details.
+- Client estimated price API is `POST /v1/client/service-orders/estimated-price`. It only quotes `Service.autoQuote = true` and no longer accepts a single top-level `servicePriceId`; it accepts `servicePrices[]`, validates every `servicePriceId` belongs to the selected `Service`, and uses DB `ServicePrice.price`, `quantity`, and `excessUnitPrice` for pricing.
+- Estimated price base fee is `sum(ServicePrice.price * selected quantity)`, with selected quantity defaulting to `1` when omitted. `BOC_XEP_THEO_CA` multiplies that base fee by `employeeCount`. `DICH_VU_VAN_TAI` calculates each selected package as `(ServicePrice.price + max(distanceKm - ServicePrice.quantity, 0) * ServicePrice.excessUnitPrice) * selected quantity` using Goong route distance from `pickupAddress` to `deliveryAddress`, then sums all packages.
+- Estimated price accepts `vouchersId` and `hasFragileItems`; it validates the voucher, emits coded quote rows, and calculates VAT on the signed quote subtotal.
+- Estimated price excludes VAT from `items` and returns `basePrice`, `preVatAmount`, `vat`, `vatAmount`, `totalPrice`, and `isUrgent` separately.
+- Admin checkin API is `POST /v1/service-orders/:id/check-in`. It requires `ServiceOrder.status = CONFIRMED`, compares employee coordinates against `address`, `pickupAddress`, and `deliveryAddress` by aerial distance, uses `AppSetting.order.checkInDistanceThreshold` in meters, then calls `OrderService.startOrder` for the linked `Order`.
+- `AdminServiceOrderService.submitQuote` must carry the persisted `address` into its status update so the JSONB value retains `latitude` and `longitude` when the quote is sent.
+- Tiêu đề notification của `ServiceOrder` chỉ thêm tiền tố `[Order.code]:` khi service order đã liên kết với `Order`; mã `ServiceOrder.code` không thay thế mã đơn hàng cuối.
+- Khi admin xác nhận service order, phải lấy `Order.code` từ order vừa tạo và truyền vào các notification gửi cho khách hàng.

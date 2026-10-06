@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple SSE Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .log { background: #f5f5f5; padding: 10px; margin: 10px 0; border-left: 3px solid #007bff; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .error { border-left-color: #dc3545; background: #f8d7da; }
+        .success { border-left-color: #28a745; background: #d4edda; }
+    </style>
+</head>
+<body>
+    <h1>Simple SSE Test</h1>
+    
+    <button onclick="testSimpleSSE()">Test Simple SSE (/test)</button>
+    <button onclick="testOriginalSSE()">Test Original SSE (/price-stream)</button>
+    <button onclick="clearLogs()">Clear Logs</button>
+    
+    <div id="logs"></div>
+
+    <script>
+        function log(message, type = 'log') {
+            const logsDiv = document.getElementById('logs');
+            const logDiv = document.createElement('div');
+            logDiv.className = `log ${type}`;
+            logDiv.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            logsDiv.appendChild(logDiv);
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+        }
+
+        function testSimpleSSE() {
+            log('🧪 Testing simple SSE endpoint...', 'success');
+            
+            const eventSource = new EventSource('http://localhost:4000/v1/client/sse/test');
+            
+            eventSource.onopen = function(event) {
+                log('✅ Simple SSE connection opened', 'success');
+            };
+            
+            eventSource.onmessage = function(event) {
+                log(`📨 Simple SSE message: ${event.data}`, 'log');
+            };
+            
+            eventSource.onerror = function(event) {
+                log(`❌ Simple SSE error: ${JSON.stringify(event)}`, 'error');
+                eventSource.close();
+            };
+
+            // eventSource.addEventListener('price-update', function(event) {
+            //     const price = JSON.parse(event.data);
+            //     console.log(`📈 Price update - ${price.product}: $${price.price}`, 'price-update');
+            // });
+            
+            // // Auto-close after 10 seconds
+            // setTimeout(() => {
+            //     eventSource.close();
+            //     log('⏰ Simple SSE test completed (auto-closed)', 'log');
+            // }, 10000);
+        }
+
+        function testOriginalSSE() {
+            log('🔄 Testing original SSE endpoint...', 'success');
+            
+            const eventSource = new EventSource('http://localhost:4000/v1/client/sse/price-stream');
+            
+            eventSource.onopen = function(event) {
+                log('✅ Original SSE connection opened', 'success');
+            };
+            
+            eventSource.addEventListener('connected', function(event) {
+                log(`🔗 Connected event: ${event.data}`, 'success');
+            });
+            
+            eventSource.addEventListener('initial-prices', function(event) {
+                log(`💰 Initial prices: ${event.data}`, 'log');
+            });
+            
+            eventSource.addEventListener('price-update', function(event) {
+                log(`📈 Price update: ${event.data}`, 'log');
+            });
+            
+            eventSource.onmessage = function(event) {
+                log(`📨 Original SSE message: ${event.data}`, 'log');
+            };
+            
+            eventSource.onerror = function(event) {
+                log(`❌ Original SSE error: ${JSON.stringify(event)}`, 'error');
+                eventSource.close();
+            };
+            
+            // Auto-close after 15 seconds
+            setTimeout(() => {
+                eventSource.close();
+                log('⏰ Original SSE test completed (auto-closed)', 'log');
+            }, 15000);
+        }
+    </script>
+</body>
+</html>

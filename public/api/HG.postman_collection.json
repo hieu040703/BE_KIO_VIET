@@ -1,0 +1,2154 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-1234-1234-123456789012",
+    "name": "HG",
+    "note": "API documentation for HG",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Attribute",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/attributes?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["attributes"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/attributes/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["attributes", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"type\": \"value\",     \"isDefault\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/attributes",
+              "host": ["{{baseHG}}"],
+              "path": ["attributes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"type\": \"value\",     \"isDefault\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/attributes/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["attributes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/attributes/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["attributes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Employee",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/employees?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["employees"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/employees/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["employees", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"phone\": \"value\",     \"address\": \"value\",     \"email\": \"value\",     \"company\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/employees",
+              "host": ["{{baseHG}}"],
+              "path": ["employees"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"phone\": \"value\",     \"address\": \"value\",     \"email\": \"value\",     \"company\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/employees/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["employees", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/employees/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["employees", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "FinanceDetail",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/finance-detail?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-detail"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/finance-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-detail", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"financeLogId\": \"value\",     \"category\": \"value\",     \"task\": \"value\",     \"unit\": \"value\",     \"quantity\": \"value\",     \"price\": \"value\",     \"amount\": \"value\",     \"files\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-detail",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-detail"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"financeLogId\": \"value\",     \"category\": \"value\",     \"task\": \"value\",     \"unit\": \"value\",     \"quantity\": \"value\",     \"price\": \"value\",     \"amount\": \"value\",     \"files\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "FinanceLog",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/finance-log?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-log"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/finance-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-log", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"type\": \"value\",     \"amount\": \"value\",     \"employeeId\": \"value\",     \"userId\": \"value\",     \"purpose\": \"value\",     \"projectId\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-log",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-log"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"type\": \"value\",     \"amount\": \"value\",     \"employeeId\": \"value\",     \"userId\": \"value\",     \"purpose\": \"value\",     \"projectId\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/finance-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["finance-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Notification",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/notifications?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["notifications"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/notifications/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["notifications", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"title\": \"value\",     \"content\": \"value\",     \"type\": \"value\",     \"isRead\": \"value\",     \"metadata\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/notifications",
+              "host": ["{{baseHG}}"],
+              "path": ["notifications"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"title\": \"value\",     \"content\": \"value\",     \"type\": \"value\",     \"isRead\": \"value\",     \"metadata\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/notifications/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["notifications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/notifications/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["notifications", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Partner",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/partners?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["partners"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/partners/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["partners", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"phone\": \"value\",     \"address\": \"value\",     \"email\": \"value\",     \"company\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/partners",
+              "host": ["{{baseHG}}"],
+              "path": ["partners"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"phone\": \"value\",     \"address\": \"value\",     \"email\": \"value\",     \"company\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/partners/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["partners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/partners/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["partners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "PermissionGroup",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/permission-groups?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["permission-groups"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/permission-groups/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["permission-groups", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"permissions\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/permission-groups",
+              "host": ["{{baseHG}}"],
+              "path": ["permission-groups"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"permissions\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/permission-groups/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["permission-groups", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/permission-groups/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["permission-groups", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ProductDetail",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/products-detail?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["products-detail"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/products-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-detail", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"productLogId\": \"value\",     \"type\": \"value\",     \"name\": \"value\",     \"unit\": \"value\",     \"price\": \"value\",     \"contractQuantity\": \"value\",     \"actualQuantity\": \"value\",     \"actualAmount\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-detail",
+              "host": ["{{baseHG}}"],
+              "path": ["products-detail"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"productLogId\": \"value\",     \"type\": \"value\",     \"name\": \"value\",     \"unit\": \"value\",     \"price\": \"value\",     \"contractQuantity\": \"value\",     \"actualQuantity\": \"value\",     \"actualAmount\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ProductLog",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/products-log?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["products-log"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/products-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-log", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"type\": \"value\",     \"projectId\": \"value\",     \"partnerId\": \"value\",     \"contractAmount\": \"value\",     \"actualAmount\": \"value\",     \"licensePlates\": \"value\",     \"recipient\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-log",
+              "host": ["{{baseHG}}"],
+              "path": ["products-log"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"type\": \"value\",     \"projectId\": \"value\",     \"partnerId\": \"value\",     \"contractAmount\": \"value\",     \"actualAmount\": \"value\",     \"licensePlates\": \"value\",     \"recipient\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/products-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["products-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Project",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/projects?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/projects/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["projects", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/projects",
+              "host": ["{{baseHG}}"],
+              "path": ["projects"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"name\": \"value\",     \"code\": \"value\",     \"address\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/projects/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["projects", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/projects/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["projects", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "SubcontractorDetail",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-detail?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-detail"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-detail", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"subcontractorLogId\": \"value\",     \"category\": \"value\",     \"task\": \"value\",     \"unit\": \"value\",     \"quantity\": \"value\",     \"price\": \"value\",     \"amount\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-detail",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-detail"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"subcontractorLogId\": \"value\",     \"category\": \"value\",     \"task\": \"value\",     \"unit\": \"value\",     \"quantity\": \"value\",     \"price\": \"value\",     \"amount\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-detail/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "SubcontractorLog",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-log?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-log"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-log", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"partnerId\": \"value\",     \"projectId\": \"value\",     \"contractAmount\": \"value\",     \"actualAmount\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-log",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-log"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"partnerId\": \"value\",     \"projectId\": \"value\",     \"contractAmount\": \"value\",     \"actualAmount\": \"value\",     \"files\": \"value\",     \"timeAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/subcontractors-log/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["subcontractors-log", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "Token",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/tokens?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["tokens"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/tokens/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["tokens", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"refreshToken\": \"value\",     \"firebaseToken\": \"value\",     \"expiresAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/tokens",
+              "host": ["{{baseHG}}"],
+              "path": ["tokens"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"userId\": \"value\",     \"refreshToken\": \"value\",     \"firebaseToken\": \"value\",     \"expiresAt\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/tokens/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["tokens", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/tokens/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["tokens", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/users?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/users/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["users", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"name\": \"value\",     \"email\": \"value\",     \"investorId\": \"value\",     \"role\": \"value\",     \"permissionGroupId\": \"value\",     \"username\": \"value\",     \"phone\": \"value\",     \"password\": \"value\",     \"avatar\": \"value\",     \"address\": \"value\",     \"isActive\": \"value\",     \"setting\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/users",
+              "host": ["{{baseHG}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"code\": \"value\",     \"name\": \"value\",     \"email\": \"value\",     \"investorId\": \"value\",     \"role\": \"value\",     \"permissionGroupId\": \"value\",     \"username\": \"value\",     \"phone\": \"value\",     \"password\": \"value\",     \"avatar\": \"value\",     \"address\": \"value\",     \"isActive\": \"value\",     \"setting\": \"value\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/users/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/users/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+
+    {
+      "name": "ColumnNumericTransformer",
+      "item": [
+        {
+          "name": "get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/columnnumerictransformers?page=1&size=10&sortBy=name&sortOrder=DESC",
+              "host": ["{{baseHG}}"],
+              "path": ["columnnumerictransformers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "type",
+                  "value": "UNIT",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "cái",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHG}}/columnnumerictransformers/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["columnnumerictransformers", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/columnnumerictransformers",
+              "host": ["{{baseHG}}"],
+              "path": ["columnnumerictransformers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/columnnumerictransformers/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["columnnumerictransformers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": { "name": "SP0002", "code": "SP0002" },
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseHG}}/columnnumerictransformers/:id",
+              "host": ["{{baseHG}}"],
+              "path": ["columnnumerictransformers", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
